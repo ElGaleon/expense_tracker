@@ -21,7 +21,8 @@ class ExpenseDatabase extends ChangeNotifier {
   }
 
   Future<void> readExpenses() async {
-    final List<Expense> expenses = await isar.expenses.where().findAll();
+    final List<Expense> expenses = await isar.expenses.where(sort: Sort.asc).findAll();
+
     _expenses.clear();
     _expenses.addAll(expenses);
     notifyListeners();
